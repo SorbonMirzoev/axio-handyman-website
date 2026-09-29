@@ -39,3 +39,4 @@ V11 update: Added Apple-style blue accent icons for contact cards, pricing icons
 V12 update: lighter Apple-blue accent, blue trust-card icons, free-estimate icons returned to neutral gray, service arrows changed to Apple-style outline pills, and each pricing card now has a Get Quote button that scrolls to the estimate form and auto-fills the service + starter project description.
 
 V13 update: polished Apple-style CTAs and hover motion; cleaner spacing; service arrows are compact blue pills with white arrows; large icons use white backgrounds with thin blue outlines; pricing Get Quote buttons moved to the top-right of each card; Get Quote now only selects the service and scrolls to Free Estimate while leaving Project Description blank.
+Cloudflare deployment enabled
