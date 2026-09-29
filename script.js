@@ -76,3 +76,56 @@ serviceButtons.forEach(btn => {
     openEstimateForService(btn.dataset.service || '');
   });
 });
+
+
+// AXIO conversion tracking hooks for Google Tag Manager / GA4.
+window.dataLayer = window.dataLayer || [];
+function axioTrack(eventName, params = {}) {
+  window.dataLayer.push({ event: eventName, ...params });
+}
+
+document.addEventListener('click', event => {
+  const link = event.target.closest('a');
+  if (!link) return;
+
+  const href = link.getAttribute('href') || '';
+  if (href.startsWith('tel:')) {
+    axioTrack('click_phone', { link_url: href, page_path: location.pathname });
+  } else if (href.startsWith('mailto:')) {
+    axioTrack('click_email', { link_url: href, page_path: location.pathname });
+  }
+
+  if (href.includes('#estimate')) {
+    axioTrack('estimate_click', {
+      link_url: href,
+      page_path: location.pathname,
+      link_text: (link.textContent || '').trim()
+    });
+  }
+
+  if (link.classList.contains('js-service-cta')) {
+    axioTrack('service_quote_click', {
+      service: link.dataset.service || 'Unknown',
+      page_path: location.pathname
+    });
+  }
+});
+
+document.querySelectorAll('form[data-form-type]').forEach(form => {
+  form.addEventListener('submit', () => {
+    axioTrack('form_submit_attempt', {
+      form_type: form.dataset.formType || 'unknown',
+      page_path: location.pathname
+    });
+  });
+});
+
+if (document.body && document.body.dataset.leadPage === 'true') {
+  let formType = 'unknown';
+  try {
+    const ref = document.referrer || '';
+    if (ref.includes('/pricing.html')) formType = 'free_estimate';
+    if (ref.includes('/contact.html')) formType = 'contact';
+  } catch (_) {}
+  axioTrack('generate_lead', { form_type: formType, page_path: location.pathname });
+}
