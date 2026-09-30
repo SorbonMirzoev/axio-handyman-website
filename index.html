@@ -31,6 +31,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png">
   <link rel="manifest" href="/site.webmanifest">
   <meta name="theme-color" content="#ffffff">
+  <link rel="preload" as="image" href="assets/hero-mobile-poster.webp" media="(max-width: 760px)" fetchpriority="high">
+  <link rel="preload" as="image" href="assets/hero-desktop-poster.webp" media="(min-width: 761px)" fetchpriority="high">
   <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -98,7 +100,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div></section>
 
   <section><div class="container"><div class="hero-card">
-    <video id="heroVideo" autoplay muted loop playsinline preload="metadata" poster="assets/hero-desktop-poster.webp" data-desktop-src="assets/hero-desktop.mp4" data-mobile-src="assets/hero-mobile.mp4" data-desktop-poster="assets/hero-desktop-poster.webp" data-mobile-poster="assets/hero-mobile-poster.webp"></video>
+    <video id="heroVideo" autoplay muted loop playsinline preload="none" poster="assets/hero-desktop-poster.webp" data-desktop-src="assets/hero-desktop.mp4" data-mobile-src="assets/hero-mobile.mp4" data-desktop-poster="assets/hero-desktop-poster.webp" data-mobile-poster="assets/hero-mobile-poster.webp"></video>
     <div class="hero-float"><div class="hero-badge"><strong>Your home. In good hands.</strong><span>Clean work, fair pricing, clear communication.</span></div><a class="btn btn-light" href="#services">Explore Services <span class="arrow">↓</span></a></div>
   </div></div></section>
 
