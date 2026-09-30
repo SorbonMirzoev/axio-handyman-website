@@ -13,28 +13,34 @@ if (toggle && links) {
 
 const heroVideo = document.getElementById('heroVideo');
 if (heroVideo) {
-  const desktopQuery = window.matchMedia('(min-width: 761px)');
+  const mobileQuery = window.matchMedia('(max-width: 760px)');
 
-  const syncHeroMedia = () => {
-    if (desktopQuery.matches) {
-      const src = heroVideo.dataset.desktopSrc;
-      const poster = heroVideo.dataset.desktopPoster || '';
-      heroVideo.setAttribute('poster', poster);
-      if (src && heroVideo.getAttribute('src') !== src) {
-        heroVideo.setAttribute('src', src);
-        heroVideo.load();
-      }
-      const playPromise = heroVideo.play();
-      if (playPromise && typeof playPromise.catch === 'function') playPromise.catch(() => {});
-    } else {
-      heroVideo.pause();
-      heroVideo.removeAttribute('src');
-      heroVideo.load();
-    }
+  const stopVideo = () => {
+    heroVideo.pause();
+    heroVideo.removeAttribute('src');
+    heroVideo.load();
   };
 
-  syncHeroMedia();
-  desktopQuery.addEventListener('change', syncHeroMedia);
+  const loadDesktopVideo = () => {
+    const src = heroVideo.dataset.desktopSrc;
+    const poster = heroVideo.dataset.desktopPoster;
+    if (poster) heroVideo.setAttribute('poster', poster);
+    if (!src || heroVideo.getAttribute('src') === src) return;
+    heroVideo.setAttribute('src', src);
+    heroVideo.load();
+    const playPromise = heroVideo.play();
+    if (playPromise && typeof playPromise.catch === 'function') playPromise.catch(() => {});
+  };
+
+  const applyHeroMedia = () => {
+    // Mobile intentionally uses the static poster only. This prevents native
+    // mobile play UI and keeps the first render lightweight.
+    if (mobileQuery.matches) stopVideo();
+    else loadDesktopVideo();
+  };
+
+  applyHeroMedia();
+  mobileQuery.addEventListener('change', applyHeroMedia);
 }
 
 const photoInput = document.getElementById('photos');

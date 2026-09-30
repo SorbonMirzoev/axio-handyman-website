@@ -1,5 +1,6 @@
 :root{
-  --bg:#ffffff;\n  --bg-soft:#f5f5f7;
+  --bg:#ffffff;
+  --bg-soft:#f5f5f7;
   --surface:#fff;
   --text:#1d1d1f;
   --muted:#6e6e73;
@@ -522,4 +523,114 @@ footer{padding:64px 0 36px}
     object-position:center;
   }
   .hero-float{z-index:3}
+}
+
+
+/* V16 — final AXIO restoration pass */
+/* Preserve the established AXIO identity; remove remaining visual drift. */
+:root{
+  --bg:#ffffff;
+  --bg-soft:#f5f5f7;
+  --text:#1d1d1f;
+  --text-secondary:#6e6e73;
+  --text-muted:#86868b;
+  --accent:#0071e3;
+  --radius-small:12px;
+  --radius-medium:18px;
+  --radius-large:24px;
+  --radius-hero:28px;
+  --section-space-desktop:120px;
+  --section-space-mobile:72px;
+  --max:1280px;
+}
+body{background:var(--bg);color:var(--text)}
+.site-header{
+  background:rgba(245,245,247,.88)!important;
+  backdrop-filter:blur(18px) saturate(135%);
+  -webkit-backdrop-filter:blur(18px) saturate(135%);
+}
+.nav{box-shadow:none!important;border-color:rgba(0,0,0,.055)}
+.home-intro h1{
+  line-height:1.08!important;
+  letter-spacing:-.04em!important;
+  font-weight:650;
+}
+.hero-headline-sub{
+  display:block;
+  margin-top:.14em;
+}
+.home-intro-side p{line-height:1.62}
+.service-page-copy h1,
+.pricing-hero-copy h1,
+.contact-hero-copy h1{
+  line-height:1.075!important;
+  letter-spacing:-.04em!important;
+}
+.service-page-copy p,
+.pricing-hero-copy p,
+.contact-hero-copy p{line-height:1.62}
+.service-tile,
+.price-service-card,
+.apple-panel,
+.trust-card,
+.pricing-model,
+.contact-method,
+.estimate-banner,
+.free-estimate-wide,
+.form-panel,
+.service-page-copy,
+.service-page-image,
+.service-detail-copy,
+.service-info-card,
+.faq-list details,
+.related-services,
+.pricing-hero-card,
+.contact-hero-card{
+  box-shadow:none!important;
+}
+.service-tile img,
+.price-service-card img,
+.service-page-image img,
+.pricing-hero-image img,
+.contact-hero-image img,
+.about-photo img{
+  image-rendering:auto;
+  backface-visibility:hidden;
+  transform:translateZ(0);
+}
+.service-tile{overflow:hidden}
+.service-tile img{aspect-ratio:4/3;object-fit:cover}
+.service-tile:hover img{transform:scale(1.015)}
+.trust-icon{display:none!important}
+.trust-card{padding-top:34px}
+.estimate-banner,.free-estimate-wide{background:var(--bg-soft)!important}
+@media(max-width:760px){
+  .home-intro{padding:60px 0 30px}
+  .home-intro h1{
+    font-size:clamp(43px,11.9vw,53px)!important;
+    line-height:1.11!important;
+    letter-spacing:-.032em!important;
+  }
+  .hero-headline-sub{margin-top:.16em}
+  .home-intro-side p{font-size:17px;line-height:1.62}
+  #heroVideo{
+    display:none!important;
+    visibility:hidden!important;
+    pointer-events:none!important;
+  }
+  .hero-mobile-still{
+    display:block!important;
+    position:absolute;
+    inset:0;
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    z-index:1;
+  }
+  .service-page-copy h1,
+  .pricing-hero-copy h1,
+  .contact-hero-copy h1{
+    line-height:1.10!important;
+    letter-spacing:-.032em!important;
+  }
 }
