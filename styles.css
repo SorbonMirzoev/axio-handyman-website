@@ -461,3 +461,65 @@ footer{padding:64px 0 36px}
   .form-panel{border-radius:20px}
   footer{padding-top:52px}
 }
+
+
+/* V15 — readability + mobile hero stability */
+/* Keep the established AXIO design, but give large display type more breathing room. */
+.home-intro h1{
+  line-height:1.045;
+  letter-spacing:-.048em;
+}
+.service-page-copy h1,
+.pricing-hero-copy h1,
+.contact-hero-copy h1{
+  line-height:1.045;
+  letter-spacing:-.046em;
+}
+
+/* Preserve image detail and prevent any browser UI from appearing over the mobile hero. */
+.service-tile img,
+.price-service-card img,
+.service-page-image img,
+.pricing-hero-image img,
+.contact-hero-image img,
+.about-photo img{
+  display:block;
+  width:100%;
+  image-rendering:auto;
+}
+.hero-card{position:relative}
+.hero-mobile-still{z-index:2}
+@media(max-width:980px){
+  .home-intro h1{line-height:1.06}
+}
+@media(max-width:760px){
+  .home-intro h1{
+    font-size:clamp(45px,12.4vw,54px);
+    line-height:1.09;
+    letter-spacing:-.038em;
+    text-wrap:pretty;
+  }
+  .pricing-hero-copy h1,
+  .contact-hero-copy h1,
+  .service-page-copy h1{
+    line-height:1.075;
+    letter-spacing:-.038em;
+  }
+  .hero-card{overflow:hidden}
+  #heroVideo{
+    display:none!important;
+    visibility:hidden!important;
+    pointer-events:none!important;
+  }
+  .hero-mobile-still{
+    display:block!important;
+    position:absolute;
+    inset:0;
+    z-index:1;
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    object-position:center;
+  }
+  .hero-float{z-index:3}
+}
