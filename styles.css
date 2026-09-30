@@ -1,20 +1,20 @@
 :root{
-  --bg:#f5f5f7;
+  --bg:#ffffff;\n  --bg-soft:#f5f5f7;
   --surface:#fff;
   --text:#1d1d1f;
   --muted:#6e6e73;
   --line:rgba(0,0,0,.08);
   --soft:#ececef;
-  --accent:#8f7d68;
-  --apple-blue:#1687f8;
-  --apple-blue-hover:#0878e3;
+  --accent:#0071e3;
+  --apple-blue:#0071e3;
+  --apple-blue-hover:#0068d1;
   --apple-blue-soft:#edf6ff;
-  --shadow:0 16px 38px rgba(0,0,0,.07);
-  --shadow-soft:0 8px 24px rgba(0,0,0,.055);
-  --r-xl:34px;
-  --r-lg:26px;
+  --shadow:none;
+  --shadow-soft:none;
+  --r-xl:28px;
+  --r-lg:24px;
   --r-md:20px;
-  --max:1220px;
+  --max:1280px;
 }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
@@ -197,4 +197,267 @@ footer{padding:42px 0 32px;color:var(--muted);font-size:13px}.footer-inner{displ
   .service-page-copy h1{font-size:52px}
   .service-page-image{min-height:330px;border-radius:24px}
   .service-detail-copy,.service-info-card{border-radius:24px}
+}
+
+
+/* V14 — AXIO premium visual-system restoration
+   Apple-inspired restraint: whitespace, typography, photography, no visible shadows. */
+:root{
+  --text-secondary:#6e6e73;
+  --text-muted:#86868b;
+  --radius-small:12px;
+  --radius-medium:18px;
+  --radius-large:24px;
+  --radius-hero:28px;
+  --section-space-desktop:112px;
+  --section-space-mobile:72px;
+}
+body{background:var(--bg);color:var(--text)}
+main{overflow:hidden}
+.container{width:min(calc(100% - 48px),var(--max))}
+
+/* Header: keep the established AXIO shape, remove floating/drop-shadow styling. */
+.site-header{
+  padding:12px 0 0;
+  background:rgba(255,255,255,.88);
+  backdrop-filter:blur(18px) saturate(150%);
+  -webkit-backdrop-filter:blur(18px) saturate(150%);
+}
+.nav{
+  background:rgba(255,255,255,.96);
+  border:1px solid rgba(0,0,0,.06);
+  box-shadow:none!important;
+}
+.nav-links a:not(.btn){color:#3a3a3c}
+.btn{font-weight:600;box-shadow:none!important;transition:background-color .25s ease,color .25s ease,border-color .25s ease,transform .25s ease}
+.btn:hover{transform:none}
+.btn-primary{background:#0071e3}
+.btn-primary:hover{background:#0068d1;transform:none}
+.btn-light,.btn-outline,.btn-apple-outline{background:#fff;border-color:rgba(0,113,227,.38);color:#0071e3}
+.btn-light:hover,.btn-outline:hover,.btn-apple-outline:hover{background:#f5f9ff;border-color:#0071e3;transform:none}
+
+/* Home hero copy: more readable leading and a calmer measure. */
+.home-intro{padding:86px 0 42px}
+.home-intro-grid{grid-template-columns:minmax(0,1.15fr) minmax(300px,.85fr);gap:64px;align-items:end}
+.home-intro .eyebrow{margin-bottom:18px}
+.home-intro h1{
+  font-size:clamp(56px,7.2vw,96px);
+  line-height:1.01;
+  letter-spacing:-.052em;
+  font-weight:650;
+  margin:0;
+  max-width:900px;
+  text-wrap:balance;
+}
+.home-intro-side{padding-bottom:8px}
+.home-intro-side p{font-size:19px;line-height:1.55;color:var(--text-secondary);max-width:440px;margin-bottom:28px}
+
+/* Hero media: photography first; no decorative gradient or shadow. */
+.hero-card{
+  height:min(720px,72vh);
+  border-radius:var(--radius-hero);
+  box-shadow:none!important;
+  background:#f5f5f7;
+  border:1px solid rgba(0,0,0,.045);
+}
+.hero-card:after{display:none!important}
+#heroVideo,.hero-mobile-still{width:100%;height:100%;object-fit:cover;object-position:center}
+.hero-mobile-still{display:none}
+#heroVideo::-webkit-media-controls,
+#heroVideo::-webkit-media-controls-panel,
+#heroVideo::-webkit-media-controls-start-playback-button{display:none!important;-webkit-appearance:none}
+.hero-badge{
+  background:rgba(255,255,255,.91);
+  border:1px solid rgba(255,255,255,.7);
+  box-shadow:none!important;
+  backdrop-filter:blur(16px) saturate(135%);
+  -webkit-backdrop-filter:blur(16px) saturate(135%);
+}
+.hero-badge strong{font-weight:650}
+
+/* Section rhythm. */
+.section{padding:var(--section-space-desktop) 0}
+.section-tight{padding:82px 0}
+.section-heading{margin-bottom:42px}
+.section-heading h2,
+.about-copy h2,
+.form-panel h2,
+.service-detail-copy h2,
+.related-services h2{
+  line-height:1.04;
+  letter-spacing:-.045em;
+  font-weight:650;
+}
+.section-heading p{line-height:1.55;color:var(--text-secondary)}
+#services{background:var(--bg-soft);margin-top:96px;padding-top:var(--section-space-desktop);padding-bottom:var(--section-space-desktop)}
+
+/* Cards: flat, architectural, image-led. */
+.service-tile,.price-service-card,.apple-panel,.trust-card,.pricing-model,
+.contact-method,.estimate-banner,.free-estimate-wide,.form-panel,
+.service-page-copy,.service-page-image,.service-detail-copy,.service-info-card,
+.faq-list details,.related-services,.pricing-hero-card,.contact-hero-card{
+  box-shadow:none!important;
+}
+.service-tile,.price-service-card,.apple-panel,.trust-card,.pricing-model,
+.contact-method,.estimate-banner,.free-estimate-wide,.form-panel,
+.service-page-copy,.service-page-image,.service-detail-copy,
+.faq-list details,.related-services,.pricing-hero-card,.contact-hero-card{
+  border:1px solid rgba(0,0,0,.06);
+}
+.service-tile{
+  border-radius:var(--radius-large);
+  background:#fff;
+  min-height:unset;
+  transition:border-color .3s ease;
+}
+.service-tile:hover{transform:none;box-shadow:none!important;border-color:rgba(0,0,0,.11)}
+.service-tile img,.price-service-card img{transition:transform .42s cubic-bezier(.2,.7,.2,1)}
+.service-tile:hover img,.price-service-card:hover img{transform:scale(1.018)}
+.service-tile-copy{padding:25px 25px 28px}
+.service-tile-copy h3{font-size:24px;font-weight:650;letter-spacing:-.03em}
+.service-tile-copy p{font-size:14px;line-height:1.55;color:var(--text-secondary)}
+.circle-link{background:#0071e3;color:#fff;width:34px;height:34px;font-size:19px}
+.service-tile:hover .circle-link{background:#0068d1;color:#fff;transform:translateX(3px)}
+
+/* About / trust: lighter, simpler, no icon-card visual noise. */
+.apple-panel{border-radius:var(--radius-hero);background:#fff}
+.about-copy{padding:clamp(48px,6vw,82px)}
+.about-copy p{line-height:1.6;color:var(--text-secondary)}
+.trust-row{gap:20px}
+.trust-card{background:var(--bg-soft);border-color:transparent;border-radius:var(--radius-large);padding:32px;min-height:180px}
+.trust-card:hover{transform:none;box-shadow:none!important}
+.trust-icon{width:42px;height:42px;margin-bottom:22px;border-width:1px;font-size:18px}
+.trust-card h3{font-weight:650}
+.trust-card p{line-height:1.55}
+
+/* Keep the dark service-area statement as a single strong contrast moment. */
+.area-card{box-shadow:none!important;border-radius:var(--radius-hero)}
+.area-card h2{line-height:.99;letter-spacing:-.05em;font-weight:650}
+.area-card p{line-height:1.6}
+
+/* Closing estimate block: neutral, flat, no gradient. */
+.estimate-banner,.free-estimate-wide{background:var(--bg-soft)!important;border-color:transparent;border-radius:var(--radius-large)}
+.estimate-icon{background:#fff}
+.estimate-banner h2,.free-estimate-wide h2{font-weight:650}
+
+/* Pricing / contact: image-led split, no nested framed image. */
+.pricing-visual-hero,.contact-hero{padding:58px 0 28px}
+.pricing-hero-card,.contact-hero-card{border-radius:var(--radius-hero)}
+.pricing-hero-copy h1,.contact-hero-copy h1{
+  line-height:1.01;
+  letter-spacing:-.05em;
+  font-weight:650;
+}
+.pricing-hero-copy p,.contact-hero-copy p{line-height:1.58;color:var(--text-secondary)}
+.pricing-hero-image,.contact-hero-image,.about-photo{
+  background:#f5f5f7;
+  padding:0!important;
+  overflow:hidden;
+}
+.pricing-hero-image img,.contact-hero-image img,.about-photo img{
+  width:100%!important;
+  height:100%!important;
+  max-width:none!important;
+  max-height:none!important;
+  object-fit:cover;
+  border-radius:0!important;
+  box-shadow:none!important;
+}
+.pricing-model{background:var(--bg-soft);border-color:transparent}
+.pricing-model:hover,.contact-method:hover{transform:none;box-shadow:none!important}
+.price-service-card{border-radius:var(--radius-large);background:#fff;overflow:hidden}
+.price-service-card:hover{transform:none;box-shadow:none!important;border-color:rgba(0,0,0,.11)}
+.price-card-copy{padding:25px}
+.price-main{font-weight:650}
+.contact-method{background:var(--bg-soft);border-color:transparent}
+.form-panel{border-radius:var(--radius-hero)}
+input,textarea,select{background:#f5f5f7;border-color:rgba(0,0,0,.08)}
+input:focus,textarea:focus,select:focus{box-shadow:0 0 0 3px rgba(0,113,227,.10)}
+
+/* Service landing pages: calmer type, larger visual, flat surfaces. */
+.service-page-hero{padding:58px 0 50px}
+.service-page-hero-grid{gap:28px}
+.service-page-copy,.service-page-image{border-radius:var(--radius-hero)}
+.service-page-copy h1{
+  line-height:1.01;
+  letter-spacing:-.05em;
+  font-weight:650;
+}
+.service-page-copy p{line-height:1.6;color:var(--text-secondary)}
+.service-page-image{min-height:560px}
+.service-detail-grid{gap:24px}
+.service-detail-copy{border-radius:var(--radius-large)}
+.service-info-card{box-shadow:none!important;border:0;background:#1d1d1f;border-radius:var(--radius-large)}
+.check-list li{background:var(--bg-soft)}
+.faq-list{gap:10px}
+.faq-list details{border-radius:var(--radius-medium)}
+.related-services{border-radius:var(--radius-large)}
+.related-links a{background:var(--bg-soft)}
+.related-links a:hover{transform:none;background:#edf6ff}
+
+/* Remove legacy hover elevation everywhere. */
+.service-tile,.trust-card,.pricing-model,.contact-method,.estimate-banner,.free-estimate-wide,.price-service-card{
+  transition:border-color .28s ease,background-color .28s ease;
+}
+.service-tile:hover,.trust-card:hover,.pricing-model:hover,.contact-method:hover,.price-service-card:hover{
+  transform:none!important;
+  box-shadow:none!important;
+}
+
+footer{padding:64px 0 36px}
+
+@media(max-width:980px){
+  .home-intro{padding:72px 0 34px}
+  .home-intro-grid{grid-template-columns:1fr;gap:34px}
+  .home-intro h1{font-size:clamp(56px,9vw,78px);line-height:1.02;max-width:780px}
+  .home-intro-side{max-width:620px}
+  #services{margin-top:72px}
+  .service-page-image{min-height:460px}
+}
+
+@media(max-width:760px){
+  :root{--section-space-mobile:72px}
+  .container{width:min(calc(100% - 28px),var(--max))}
+  .site-header{padding-top:8px}
+  .nav{border-radius:18px;box-shadow:none!important}
+  .nav-links{box-shadow:none!important;border:1px solid rgba(0,0,0,.07)}
+  .home-intro{padding:58px 0 26px}
+  .home-intro .eyebrow{margin-bottom:16px}
+  .home-intro h1{
+    font-size:clamp(47px,13vw,56px);
+    line-height:1.055;
+    letter-spacing:-.044em;
+    font-weight:650;
+  }
+  .home-intro-side p{font-size:17px;line-height:1.58}
+  .home-intro-actions{gap:9px}
+  .hero-card{height:64svh;min-height:480px;border-radius:20px}
+  #heroVideo{display:none!important}
+  .hero-mobile-still{display:block;width:100%;height:100%;object-fit:cover}
+  .hero-float{left:12px;right:12px;bottom:12px}
+  .hero-badge{padding:16px 17px;border-radius:17px;max-width:calc(100% - 4px)}
+  .hero-badge strong{font-size:21px;line-height:1.15}
+  .hero-badge span{font-size:13px;line-height:1.4}
+  .section{padding:var(--section-space-mobile) 0}
+  .section-tight{padding:56px 0}
+  #services{margin-top:64px;padding:var(--section-space-mobile) 0}
+  .section-heading{gap:18px;margin-bottom:30px}
+  .section-heading h2{font-size:clamp(38px,10.5vw,46px);line-height:1.04}
+  .service-tile{border-radius:20px}
+  .service-tile img{aspect-ratio:4/3}
+  .service-tile-copy{padding:22px 22px 24px}
+  .about-copy{padding:38px 26px}
+  .about-copy h2{font-size:clamp(40px,11vw,50px);line-height:1.04}
+  .pricing-visual-hero,.contact-hero,.service-page-hero{padding-top:38px}
+  .pricing-hero-copy,.contact-hero-copy,.service-page-copy{padding:38px 27px}
+  .pricing-hero-copy h1,.contact-hero-copy h1,.service-page-copy h1{
+    font-size:clamp(46px,12vw,56px);
+    line-height:1.04;
+    letter-spacing:-.045em;
+  }
+  .pricing-hero-image,.contact-hero-image,.service-page-image{min-height:360px}
+  .pricing-hero-image img,.contact-hero-image img,.about-photo img{border-radius:0!important}
+  .service-detail-copy,.service-info-card{border-radius:20px}
+  .form-panel{border-radius:20px}
+  footer{padding-top:52px}
 }

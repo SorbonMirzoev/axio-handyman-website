@@ -13,61 +13,28 @@ if (toggle && links) {
 
 const heroVideo = document.getElementById('heroVideo');
 if (heroVideo) {
-  const mobileQuery = window.matchMedia('(max-width: 760px)');
-  let mobileLoadScheduled = false;
-  let mobileVideoLoaded = false;
+  const desktopQuery = window.matchMedia('(min-width: 761px)');
 
-  const loadHeroVideo = (src, poster) => {
-    if (!src || heroVideo.getAttribute('src') === src) return;
-    heroVideo.pause();
-    heroVideo.setAttribute('poster', poster || '');
-    heroVideo.setAttribute('src', src);
-    heroVideo.load();
-    const playPromise = heroVideo.play();
-    if (playPromise && typeof playPromise.catch === 'function') playPromise.catch(() => {});
-  };
-
-  const scheduleMobileVideo = () => {
-    if (mobileLoadScheduled || mobileVideoLoaded) return;
-    mobileLoadScheduled = true;
-
-    const start = () => {
-      if (!mobileQuery.matches || mobileVideoLoaded) return;
-      mobileVideoLoaded = true;
-      loadHeroVideo(heroVideo.dataset.mobileSrc, heroVideo.dataset.mobilePoster);
-    };
-
-    // Keep the first mobile render lightweight: show the optimized poster first,
-    // then start the video after the page load/idle period.
-    window.addEventListener('load', () => {
-      if ('requestIdleCallback' in window) {
-        requestIdleCallback(start, { timeout: 2500 });
-      } else {
-        setTimeout(start, 1500);
+  const syncHeroMedia = () => {
+    if (desktopQuery.matches) {
+      const src = heroVideo.dataset.desktopSrc;
+      const poster = heroVideo.dataset.desktopPoster || '';
+      heroVideo.setAttribute('poster', poster);
+      if (src && heroVideo.getAttribute('src') !== src) {
+        heroVideo.setAttribute('src', src);
+        heroVideo.load();
       }
-    }, { once: true });
-
-    // If the page is already loaded (e.g. bfcache), still defer the video briefly.
-    if (document.readyState === 'complete') {
-      setTimeout(start, 1200);
-    }
-  };
-
-  const applyHeroSource = () => {
-    if (mobileQuery.matches) {
-      heroVideo.setAttribute('poster', heroVideo.dataset.mobilePoster || '');
+      const playPromise = heroVideo.play();
+      if (playPromise && typeof playPromise.catch === 'function') playPromise.catch(() => {});
+    } else {
+      heroVideo.pause();
       heroVideo.removeAttribute('src');
       heroVideo.load();
-      scheduleMobileVideo();
-    } else {
-      mobileLoadScheduled = false;
-      mobileVideoLoaded = false;
-      loadHeroVideo(heroVideo.dataset.desktopSrc, heroVideo.dataset.desktopPoster);
     }
   };
 
-  applyHeroSource();
-  mobileQuery.addEventListener('change', applyHeroSource);
+  syncHeroMedia();
+  desktopQuery.addEventListener('change', syncHeroMedia);
 }
 
 const photoInput = document.getElementById('photos');
